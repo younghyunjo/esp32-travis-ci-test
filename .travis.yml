@@ -11,4 +11,5 @@ script:
   - docker run --rm -v $TRAVIS_BUILD_DIR/:/build -w /build -t younghyunjo/esp32 /bin/bash travis_build.sh
 
 notifications:
-  webhooks : https://hooks.slack.com/services/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
+  webhooks:
+    - https://hooks.slack.com/services/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
