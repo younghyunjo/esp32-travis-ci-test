@@ -1,0 +1,9 @@
+sudo: required
+language:c
+service:
+  - docker
+before_install:
+  - docker pull younghyunjo/esp32
+
+script:    
+  - docer run --rm -v $TRAVIS_BUILD_DIR/:/data -t younghyunjo/esp32 
