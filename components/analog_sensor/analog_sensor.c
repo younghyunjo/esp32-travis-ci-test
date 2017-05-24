@@ -85,7 +85,7 @@ void analog_sensor_init(void)
     }
 
     //adc1_config_width(ADC_WIDTH_12Bit);
-    adc1_config_width(ADC_WIDTH_10Bit);
+    adc1_config_width(ADC_WIDTH_12Bit);
 
     _initialized =  true;
 }
