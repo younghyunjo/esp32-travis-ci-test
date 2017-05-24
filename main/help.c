@@ -1,3 +1,5 @@
+#include <stdio.h>
+
 void help(void)
 {
 	int i=0;
