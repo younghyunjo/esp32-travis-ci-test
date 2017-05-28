@@ -1,7 +1,6 @@
 sudo: required
 language: c
 env:
-  - ci_env=`bash <(curl -s https://codecov.io/env)`
 
 services:
   - docker
@@ -10,7 +9,8 @@ before_install:
   - docker pull younghyunjo/esp32v1
 
 script:
-  - docker run -d --name build -v $TRAVIS_BUILD_DIR/:/build -w /build -t younghyunjo/esp32v1 /bin/bash -c "while true; do sleep 1000000; done"
+  - ci_env=`bash <(curl -s https://codecov.io/env)`
+  - docker run -d --name build -e ci_env="$ci_env" -v $TRAVIS_BUILD_DIR/:/build -w /build -t younghyunjo/esp32v1 /bin/bash -c "while true; do sleep 1000000; done"
   - docker exec build /bin/bash -c "cp ld/esp32.common.ld \$IDF_PATH/components/esp32/ld && make"
   - docker exec build /bin/bash -c "cd tests && cmake -DCMAKE_BUILD_TYPE=Debug && make coverage"
 
