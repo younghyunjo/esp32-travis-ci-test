@@ -9,8 +9,8 @@ before_install:
 
 script:
   - docker run -d --name build -v $TRAVIS_BUILD_DIR/:/build -w /build -t younghyunjo/esp32v1 /bin/bash -c "while true; do sleep 1000000; done"
-  - docker exec build /bin/bash -c "cp ld/esp32.common.ld $IDF_PATH/components/esp32/ld && make"
-  - docker exec buiid /bin/bash -c "cd tests && cmake -DCMAKE_BUILD_TYPE=Debug && make coverage"
+  - docker exec build /bin/bash -c "cp ld/esp32.common.ld \$IDF_PATH/components/esp32/ld && make"
+  - docker exec build /bin/bash -c "cd tests && cmake -DCMAKE_BUILD_TYPE=Debug && make coverage"
   - docker stop build
   - docker rm build
 
