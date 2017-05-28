@@ -5,10 +5,12 @@ services:
   - docker
 
 before_install:
-  - docker pull younghyunjo/esp32
+  - docker pull younghyunjo/esp32v1
 
 script:
-  - docker run --rm -v $TRAVIS_BUILD_DIR/:/build -w /build -t younghyunjo/esp32 /bin/bash make
+  - docker run --rm -v $TRAVIS_BUILD_DIR/:/build -w /build -t younghyunjo/esp32v1 /bin/bash travis_build.sh
+  - docker run --rm -v $TRAVIS_BUILD_DIR/:/build -w /build -t younghyunjo/esp32v1 /bin/bash travis_unittest.sh
+
 
 #notifications:
 #  slack: switcher:Tkionvkg730XII2r6rIMDLPK
