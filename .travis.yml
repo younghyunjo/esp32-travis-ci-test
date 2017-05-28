@@ -10,5 +10,5 @@ before_install:
 script:
   - docker run --rm -v $TRAVIS_BUILD_DIR/:/build -w /build -t younghyunjo/esp32 /bin/bash travis_build.sh
 
-notifications:
-  slack: switcher:Tkionvkg730XII2r6rIMDLPK
+#notifications:
+#  slack: switcher:Tkionvkg730XII2r6rIMDLPK
