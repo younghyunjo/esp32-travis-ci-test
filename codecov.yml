@@ -58,8 +58,8 @@ coverage:
         paths:
           - folder
 
-#  ignore: # files and folders for processing
-#    - SwitcherMTests/*
+  ignore: # files and folders for processing
+    - tests
 #    - Pods/*
 #    - SwitcherM/Extensions/UIColorExtensions.swift
 
