@@ -1,5 +1,7 @@
 sudo: required
 language: c
+env:
+  - ci_env=`bash <(curl -s https://codecov.io/env)`
 
 services:
   - docker
@@ -11,6 +13,11 @@ script:
   - docker run -d --name build -v $TRAVIS_BUILD_DIR/:/build -w /build -t younghyunjo/esp32v1 /bin/bash -c "while true; do sleep 1000000; done"
   - docker exec build /bin/bash -c "cp ld/esp32.common.ld \$IDF_PATH/components/esp32/ld && make"
   - docker exec build /bin/bash -c "cd tests && cmake -DCMAKE_BUILD_TYPE=Debug && make coverage"
+
+after_success:
+  - docker exec build /bin/bash -c "bash <(curl -s https://codecov.io/bash)"
+
+after script:
   - docker stop build
   - docker rm build
 
